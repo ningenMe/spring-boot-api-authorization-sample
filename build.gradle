@@ -13,15 +13,14 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	//mysql
-	implementation 'mysql:mysql-connector-java:8.0.21'
-	//mybatis
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+//	//mysql
+//	implementation 'mysql:mysql-connector-java:8.0.21'
+//	//mybatis
+//	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
 }
 
 test {
