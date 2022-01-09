@@ -26,3 +26,4 @@ CREATE TABLE `j_user_role` (
 
 INSERT INTO user (user_id,api_token) VALUES (1,'WDGL7mGX4j'),(2,'CT/FrUY667');
 INSERT INTO role (role_id,role_name) VALUES (1,'test1'),(2,'test2'),(3,'test3');
+INSERT INTO j_user_role (user_id, role_id) VALUES (1,1),(1,2),(2,3);
