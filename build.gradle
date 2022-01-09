@@ -17,10 +17,10 @@ dependencies {
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-//	//mysql
-//	implementation 'mysql:mysql-connector-java:8.0.21'
-//	//mybatis
-//	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+	//mysql
+	implementation 'mysql:mysql-connector-java:8.0.21'
+	//mybatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
 }
 
 test {
