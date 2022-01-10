@@ -18,6 +18,16 @@ public class TestController {
         return ResponseEntity.ok("test1");
     }
 
+    @GetMapping("/test2")
+    public ResponseEntity<String> test2Get() {
+        return ResponseEntity.ok("test2");
+    }
+
+    @GetMapping("/test3")
+    public ResponseEntity<String> test3Get() {
+        return ResponseEntity.ok("test3");
+    }
+
     @GetMapping("/hoge")
     public ResponseEntity<Integer> hogeGet(
             @RequestParam("apiToken") String apiToken
