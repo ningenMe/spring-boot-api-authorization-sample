@@ -16,7 +16,7 @@ public class TestController {
 
     private final ApiUserMysqlRepository userMysqlRepository;
 
-    @Secured("ROLE_test1")
+    @PreAuthorize("hasAuthority('test1')")
     @GetMapping("/test1")
     public ResponseEntity<String> test1Get() {
         return ResponseEntity.ok("test1");
