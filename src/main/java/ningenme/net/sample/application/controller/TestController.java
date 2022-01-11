@@ -1,8 +1,11 @@
 package ningenme.net.sample.application.controller;
 
 import lombok.RequiredArgsConstructor;
-import ningenme.net.sample.infrastructure.mysql.UserMysqlRepository;
+import ningenme.net.sample.domain.value.AuthorityModel;
+import ningenme.net.sample.infrastructure.mysql.ApiUserMysqlRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final UserMysqlRepository userMysqlRepository;
+    private final ApiUserMysqlRepository userMysqlRepository;
 
+    @Secured("ROLE_test1")
     @GetMapping("/test1")
     public ResponseEntity<String> test1Get() {
         return ResponseEntity.ok("test1");
@@ -23,16 +27,10 @@ public class TestController {
         return ResponseEntity.ok("test2");
     }
 
+    @PreAuthorize("hasAuthority('test3')")
     @GetMapping("/test3")
     public ResponseEntity<String> test3Get() {
         return ResponseEntity.ok("test3");
-    }
-
-    @GetMapping("/hoge")
-    public ResponseEntity<Integer> hogeGet(
-            @RequestParam("apiToken") String apiToken
-    ) {
-        return ResponseEntity.ok(userMysqlRepository.getUserModel(apiToken).getRoleModelList().size());
     }
 
 }

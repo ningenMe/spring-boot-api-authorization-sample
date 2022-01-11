@@ -2,21 +2,21 @@ package ningenme.net.sample.infrastructure.mysql.dto;
 
 import lombok.Data;
 import lombok.NonNull;
-import ningenme.net.sample.domain.entity.UserModel;
-import ningenme.net.sample.domain.value.RoleModel;
+import lombok.extern.slf4j.Slf4j;
+import ningenme.net.sample.domain.entity.ApiUserModel;
+import ningenme.net.sample.domain.value.AuthorityModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@Slf4j
 public class UserDto {
     private Integer userId;
     private String roleName;
 
-    public static UserModel getUserModel(@NonNull final List<UserDto> userDtoList) {
-        return UserModel.of(
-                userDtoList.stream().findFirst().get().getUserId(),
-                userDtoList.stream().map(userDto -> RoleModel.of(userDto.getRoleName())).collect(Collectors.toList())
-        );
+    public static ApiUserModel getApiUserModel(@NonNull final List<UserDto> userDtoList) {
+        log.error(userDtoList.toString());
+        return new ApiUserModel(userDtoList.stream().map(userDto -> AuthorityModel.of(userDto.getRoleName())).collect(Collectors.toList()));
     }
 }
