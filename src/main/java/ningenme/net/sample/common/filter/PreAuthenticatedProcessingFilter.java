@@ -11,15 +11,11 @@ public class PreAuthenticatedProcessingFilter extends AbstractPreAuthenticatedPr
 
     @Override
     protected Object getPreAuthenticatedPrincipal(HttpServletRequest request) {
-        log.error("principal");
-        log.error(request.getHeader("API_KEY"));
-        return request.getHeader("API_KEY");
+        return "";
     }
 
     @Override
     protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
-        log.error("credential");
-        log.error(request.getHeader("API_KEY"));
         return request.getHeader("API_KEY");
     }
 

@@ -16,7 +16,6 @@ public class UserDto {
     private String roleName;
 
     public static ApiUserModel getApiUserModel(@NonNull final List<UserDto> userDtoList) {
-        log.error(userDtoList.toString());
         return new ApiUserModel(userDtoList.stream().map(userDto -> AuthorityModel.of(userDto.getRoleName())).collect(Collectors.toList()));
     }
 }

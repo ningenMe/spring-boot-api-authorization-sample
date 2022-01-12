@@ -18,8 +18,8 @@ public class ApiUserService implements AuthenticationUserDetailsService<PreAuthe
 
     @Override
     public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken token) throws UsernameNotFoundException {
-        final ApiUserModel apiUserModel = userMysqlRepository.getUserModel(token.getPrincipal().toString());
-        log.error(apiUserModel.getAuthorities().toString());
+        final ApiUserModel apiUserModel = userMysqlRepository.getUserModel(token.getCredentials().toString());
+        log.info(apiUserModel.getAuthorities().toString());
         return apiUserModel;
     }
 }

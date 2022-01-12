@@ -3,11 +3,9 @@ package ningenme.net.sample.common.config;
 import lombok.RequiredArgsConstructor;
 import ningenme.net.sample.common.filter.PreAuthenticatedProcessingFilter;
 import ningenme.net.sample.domain.service.ApiUserService;
-import ningenme.net.sample.domain.value.AuthorityModel;
 import ningenme.net.sample.infrastructure.mysql.ApiUserMysqlRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -28,11 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilter(preAuthenticatedProcessingFilter())
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
                 .and()
+
+                .addFilter(preAuthenticatedProcessingFilter())
 
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
