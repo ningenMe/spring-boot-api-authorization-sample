@@ -11,12 +11,12 @@ import java.util.List;
 public interface ApiUserMysqlMapper {
 
     @Select(
-            "SELECT user.user_id, role_name " +
+            "SELECT user.user_id, authority_name " +
             "FROM user " +
-            "JOIN j_user_role " +
-            "ON user.user_id = j_user_role.user_id " +
-            "JOIN role " +
-            "ON j_user_role.role_id = role.role_id " +
+            "JOIN j_user_authority " +
+            "ON user.user_id = j_user_authority.user_id " +
+            "JOIN authority " +
+            "ON j_user_authority.authority_id = authority.authority_id " +
             "WHERE api_token = #{apiToken}"
     )
     List<UserDto> select(@NonNull final String apiToken);

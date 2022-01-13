@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserDto {
     private Integer userId;
-    private String roleName;
+    private String authorityName;
 
     public static ApiUserModel getApiUserModel(@NonNull final List<UserDto> userDtoList) {
-        return new ApiUserModel(userDtoList.stream().map(userDto -> AuthorityModel.of(userDto.getRoleName())).collect(Collectors.toList()));
+        return new ApiUserModel(userDtoList.stream().map(userDto -> AuthorityModel.of(userDto.getAuthorityName())).collect(Collectors.toList()));
     }
 }
