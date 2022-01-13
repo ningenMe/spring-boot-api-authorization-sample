@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Slf4j
+@Service
 public class ApiUserService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
 
     private final ApiUserMysqlRepository userMysqlRepository;

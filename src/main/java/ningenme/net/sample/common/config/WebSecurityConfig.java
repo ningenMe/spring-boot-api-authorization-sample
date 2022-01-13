@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import ningenme.net.sample.common.filter.PreAuthenticatedProcessingFilter;
 import ningenme.net.sample.domain.service.ApiUserService;
 import ningenme.net.sample.infrastructure.mysql.ApiUserMysqlRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
@@ -21,7 +22,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final ApiUserMysqlRepository apiUserMysqlRepository;
+    private final ApiUserService apiUserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,16 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    ApiUserService apiUserService() {
-        return new ApiUserService(apiUserMysqlRepository);
-    }
-
-    @Bean
     PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider() {
         final PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider
                 = new PreAuthenticatedAuthenticationProvider();
         preAuthenticatedAuthenticationProvider
-                .setPreAuthenticatedUserDetailsService(apiUserService());
+                .setPreAuthenticatedUserDetailsService(apiUserService);
         preAuthenticatedAuthenticationProvider
                 .setUserDetailsChecker(new AccountStatusUserDetailsChecker());
         return preAuthenticatedAuthenticationProvider;
@@ -74,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(preAuthenticatedAuthenticationProvider());
     }
 }
